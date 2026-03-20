@@ -20,17 +20,10 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--warm-white); color: var(--ink); overflow-x: hidden; }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--warm-white);
-    color: var(--ink);
-    overflow-x: hidden;
-  }
-
-  /* ── NAV ── */
+  /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
@@ -39,626 +32,47 @@
     backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
   }
-  .nav-logo {
-    font-family: 'Space Mono', monospace;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--teal);
-    letter-spacing: 0.08em;
-  }
+  .nav-logo { font-family: 'Space Mono', monospace; font-size: 1.1rem; font-weight: 700; color: var(--teal); letter-spacing: 0.08em; }
   .nav-logo span { color: var(--purple); }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a {
-    font-size: 0.82rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink);
-    text-decoration: none;
-    opacity: 0.65;
-    transition: opacity 0.2s;
-  }
+  .nav-links a { font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); text-decoration: none; opacity: 0.65; transition: opacity 0.2s; }
   .nav-links a:hover { opacity: 1; color: var(--teal); }
-  .nav-cta {
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.6rem 1.5rem;
-    background: var(--teal);
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
-  }
+  .nav-cta { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.6rem 1.5rem; background: var(--teal); color: white; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; }
   .nav-cta:hover { background: var(--teal-dark); transform: translateY(-1px); }
 
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 8rem 4rem 6rem;
-    position: relative;
-    overflow: hidden;
-  }
+  /* HERO */
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 8rem 4rem 6rem; position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse 60% 50% at 80% 40%, rgba(21,160,175,0.07) 0%, transparent 70%), radial-gradient(ellipse 40% 60% at 10% 80%, rgba(75,48,120,0.06) 0%, transparent 60%); }
 
-  .hero-bg {
-    position: absolute; inset: 0; z-index: 0;
-    background:
-      radial-gradient(ellipse 60% 50% at 80% 40%, rgba(21,160,175,0.07) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(75,48,120,0.06) 0%, transparent 60%);
-  }
+  .scripts-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+  .script-char { position: absolute; font-family: 'Cormorant Garamond', serif; font-size: clamp(1.5rem, 3vw, 3.5rem); color: var(--teal); opacity: 0; animation: floatScript 18s infinite; }
+  @keyframes floatScript { 0% { opacity: 0; transform: translateY(20px) rotate(-5deg); } 15% { opacity: 0.06; } 50% { opacity: 0.09; transform: translateY(-30px) rotate(3deg); } 85% { opacity: 0.06; } 100% { opacity: 0; transform: translateY(-60px) rotate(-3deg); } }
 
-  /* Floating scripts animation */
-  .scripts-bg {
-    position: absolute; inset: 0; z-index: 0; overflow: hidden;
-    pointer-events: none;
-  }
-  .script-char {
-    position: absolute;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.5rem, 3vw, 3.5rem);
-    color: var(--teal);
-    opacity: 0;
-    animation: floatScript 18s infinite;
-  }
-  @keyframes floatScript {
-    0%   { opacity: 0; transform: translateY(20px) rotate(-5deg); }
-    15%  { opacity: 0.06; }
-    50%  { opacity: 0.09; transform: translateY(-30px) rotate(3deg); }
-    85%  { opacity: 0.06; }
-    100% { opacity: 0; transform: translateY(-60px) rotate(-3deg); }
-  }
-
-  .hero-eyebrow {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--teal);
-    margin-bottom: 1.8rem;
-    position: relative; z-index: 1;
-    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
-  }
-
-  .hero-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3.5rem, 8vw, 7.5rem);
-    font-weight: 300;
-    line-height: 1.0;
-    letter-spacing: -0.02em;
-    max-width: 900px;
-    position: relative; z-index: 1;
-    opacity: 0; animation: fadeUp 0.9s 0.35s forwards;
-  }
-  .hero-title em {
-    font-style: italic;
-    color: var(--teal);
-  }
-  .hero-title .line2 {
-    color: var(--purple);
-    display: block;
-  }
-
-  .hero-sub {
-    margin-top: 2.2rem;
-    font-size: 1.05rem;
-    font-weight: 300;
-    color: var(--muted);
-    max-width: 520px;
-    line-height: 1.75;
-    position: relative; z-index: 1;
-    opacity: 0; animation: fadeUp 0.9s 0.5s forwards;
-  }
-
-  .hero-actions {
-    display: flex; gap: 1.2rem; margin-top: 3rem;
-    position: relative; z-index: 1;
-    opacity: 0; animation: fadeUp 0.9s 0.65s forwards;
-  }
-  .btn-primary {
-    padding: 1rem 2.5rem;
-    background: var(--teal);
-    color: white;
-    font-size: 0.82rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    border: none; cursor: pointer;
-    transition: all 0.2s;
-  }
+  .hero-eyebrow { font-family: 'Space Mono', monospace; font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--teal); margin-bottom: 1.8rem; position: relative; z-index: 1; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 8vw, 7.5rem); font-weight: 300; line-height: 1.0; letter-spacing: -0.02em; max-width: 900px; position: relative; z-index: 1; opacity: 0; animation: fadeUp 0.9s 0.35s forwards; }
+  .hero-title em { font-style: italic; color: var(--teal); }
+  .hero-title .line2 { color: var(--purple); display: block; }
+  .hero-sub { margin-top: 2.2rem; font-size: 1.05rem; font-weight: 300; color: var(--muted); max-width: 520px; line-height: 1.75; position: relative; z-index: 1; opacity: 0; animation: fadeUp 0.9s 0.5s forwards; }
+  .hero-actions { display: flex; gap: 1.2rem; margin-top: 3rem; position: relative; z-index: 1; opacity: 0; animation: fadeUp 0.9s 0.65s forwards; }
+  .btn-primary { padding: 1rem 2.5rem; background: var(--teal); color: white; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer; transition: all 0.2s; }
   .btn-primary:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(21,160,175,0.3); }
-  .btn-outline {
-    padding: 1rem 2.5rem;
-    background: transparent;
-    color: var(--purple);
-    font-size: 0.82rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    border: 1.5px solid var(--purple);
-    cursor: pointer;
-    transition: all 0.2s;
-  }
+  .btn-outline { padding: 1rem 2.5rem; background: transparent; color: var(--purple); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; border: 1.5px solid var(--purple); cursor: pointer; transition: all 0.2s; }
   .btn-outline:hover { background: var(--purple); color: white; transform: translateY(-2px); }
+  .hero-scroll { position: absolute; bottom: 2.5rem; left: 4rem; display: flex; align-items: center; gap: 0.8rem; font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); z-index: 1; opacity: 0; animation: fadeUp 1s 1s forwards; }
+  .scroll-line { width: 40px; height: 1px; background: var(--teal); animation: scrollPulse 2s infinite; }
+  @keyframes scrollPulse { 0%, 100% { width: 40px; opacity: 0.5; } 50% { width: 60px; opacity: 1; } }
 
-  /* Scroll indicator */
-  .hero-scroll {
-    position: absolute; bottom: 2.5rem; left: 4rem;
-    display: flex; align-items: center; gap: 0.8rem;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    z-index: 1;
-    opacity: 0; animation: fadeUp 1s 1s forwards;
-  }
-  .scroll-line {
-    width: 40px; height: 1px;
-    background: var(--teal);
-    animation: scrollPulse 2s infinite;
-  }
-  @keyframes scrollPulse {
-    0%, 100% { width: 40px; opacity: 0.5; }
-    50% { width: 60px; opacity: 1; }
-  }
-
-  /* Stats band */
-  .stats-band {
-    background: var(--ink);
-    padding: 3rem 4rem;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-  }
+  /* STATS BAND */
+  .stats-band { background: var(--ink); padding: 3rem 4rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
   .stat-item { text-align: center; }
-  .stat-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3.2rem;
-    font-weight: 600;
-    color: var(--teal-light);
-    line-height: 1;
-  }
-  .stat-label {
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.45);
-    margin-top: 0.5rem;
-  }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 3.2rem; font-weight: 600; color: var(--teal-light); line-height: 1; }
+  .stat-label { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 0.5rem; }
 
-  /* ── MISSION ── */
-  .mission {
-    padding: 8rem 4rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6rem;
-    align-items: center;
-  }
-  .mission-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--teal);
-    margin-bottom: 1.5rem;
-  }
-  .mission-heading {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.2rem, 4vw, 3.5rem);
-    font-weight: 300;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-  }
-  .mission-heading strong {
-    font-weight: 600;
-    color: var(--purple);
-  }
-  .mission-text {
-    font-size: 1rem;
-    line-height: 1.85;
-    color: var(--muted);
-    margin-bottom: 1.5rem;
-  }
-  .mission-visual {
-    position: relative;
-    height: 480px;
-  }
-  .globe-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .globe-ring {
-    position: absolute;
-    border-radius: 50%;
-    border: 1px solid rgba(21,160,175,0.2);
-    animation: spinRing 20s linear infinite;
-  }
-  .globe-ring:nth-child(1) { width: 320px; height: 320px; border-color: rgba(21,160,175,0.15); animation-duration: 25s; }
-  .globe-ring:nth-child(2) { width: 420px; height: 420px; border-color: rgba(75,48,120,0.1); animation-duration: 35s; animation-direction: reverse; }
-  .globe-ring:nth-child(3) { width: 500px; height: 500px; border-color: rgba(21,160,175,0.07); animation-duration: 45s; }
-  @keyframes spinRing {
-    from { transform: rotate(0deg) rotateX(60deg); }
-    to { transform: rotate(360deg) rotateX(60deg); }
-  }
-  .globe-core {
-    width: 200px; height: 200px;
-    border-radius: 50%;
-    background: conic-gradient(from 180deg, var(--teal) 0%, var(--purple) 60%, var(--teal-light) 100%);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 4rem;
-    box-shadow: 0 0 60px rgba(21,160,175,0.25), inset 0 0 40px rgba(0,0,0,0.1);
-    animation: pulsGlobe 4s ease-in-out infinite;
-    position: relative; z-index: 2;
-  }
-  @keyframes pulsGlobe {
-    0%, 100% { box-shadow: 0 0 60px rgba(21,160,175,0.25); }
-    50% { box-shadow: 0 0 90px rgba(21,160,175,0.4), 0 0 120px rgba(75,48,120,0.15); }
-  }
+  /* REVEAL ANIMATION */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s, transform 0.7s; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* Language pills orbiting */
-  .lang-orbit {
-    position: absolute;
-    width: 380px; height: 380px;
-    border-radius: 50%;
-    animation: orbitLang 15s linear infinite;
-  }
-  .lang-pill {
-    position: absolute;
-    top: -14px; left: 50%;
-    transform: translateX(-50%);
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 0.3rem 0.9rem;
-    font-size: 0.72rem;
-    font-weight: 500;
-    color: var(--teal-dark);
-    white-space: nowrap;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-  }
-  @keyframes orbitLang {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-  .lang-orbit:nth-child(even) { animation-direction: reverse; animation-duration: 22s; }
-
-  /* ── PILLARS ── */
-  .pillars {
-    padding: 6rem 4rem;
-    background: var(--cream);
-  }
-  .section-header {
-    text-align: center;
-    margin-bottom: 4rem;
-  }
-  .section-header .label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--teal);
-    margin-bottom: 1rem;
-  }
-  .section-header h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 300;
-    letter-spacing: -0.01em;
-  }
-  .section-header h2 em { font-style: italic; color: var(--purple); }
-
-  .pillars-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-  }
-  .pillar-card {
-    background: white;
-    padding: 3rem 2.5rem;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s;
-  }
-  .pillar-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--teal), var(--purple));
-    transform: scaleX(0);
-    transition: transform 0.3s;
-  }
-  .pillar-card:hover { transform: translateY(-4px); }
-  .pillar-card:hover::before { transform: scaleX(1); }
-  .pillar-num {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    color: var(--teal);
-    margin-bottom: 1.5rem;
-  }
-  .pillar-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1.2rem;
-  }
-  .pillar-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.6rem;
-    font-weight: 600;
-    margin-bottom: 0.8rem;
-    letter-spacing: -0.01em;
-  }
-  .pillar-desc {
-    font-size: 0.9rem;
-    line-height: 1.75;
-    color: var(--muted);
-  }
-
-  /* ── LANGUAGES TICKER ── */
-  .ticker-wrap {
-    padding: 2.5rem 0;
-    background: var(--ink);
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  .ticker-inner {
-    display: inline-flex;
-    gap: 3rem;
-    animation: ticker 30s linear infinite;
-  }
-  .ticker-item {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
-    font-style: italic;
-    color: rgba(255,255,255,0.35);
-    flex-shrink: 0;
-  }
-  .ticker-item.native { color: var(--teal-light); opacity: 0.7; font-style: normal; }
-  .ticker-dot {
-    color: var(--teal);
-    opacity: 0.4;
-  }
-  @keyframes ticker {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  /* ── PROGRAMS ── */
-  .programs {
-    padding: 8rem 4rem;
-    display: grid;
-    grid-template-columns: 340px 1fr;
-    gap: 5rem;
-    align-items: start;
-  }
-  .programs-sticky {
-    position: sticky;
-    top: 7rem;
-  }
-  .programs-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5px;
-  }
-  .program-item {
-    padding: 2rem 2.5rem;
-    background: var(--cream);
-    border-left: 3px solid transparent;
-    cursor: pointer;
-    transition: all 0.25s;
-  }
-  .program-item:hover, .program-item.active {
-    border-left-color: var(--teal);
-    background: white;
-  }
-  .program-item h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 0.4rem;
-  }
-  .program-item p {
-    font-size: 0.82rem;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  /* ── COMMUNITY MAP ── */
-  .community {
-    padding: 7rem 4rem;
-    background: var(--ink);
-    position: relative;
-    overflow: hidden;
-  }
-  .community-bg {
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(21,160,175,0.06) 0%, transparent 70%);
-  }
-  .community .section-header .label { color: var(--teal-light); }
-  .community .section-header h2 { color: white; }
-  .community .section-header h2 em { color: var(--teal-light); }
-
-  .regions-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1.5rem;
-    margin-top: 4rem;
-    position: relative; z-index: 1;
-  }
-  .region-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.07);
-    padding: 2rem 1.5rem;
-    text-align: center;
-    transition: all 0.3s;
-    cursor: pointer;
-  }
-  .region-card:hover {
-    background: rgba(21,160,175,0.1);
-    border-color: rgba(21,160,175,0.3);
-    transform: translateY(-3px);
-  }
-  .region-flag { font-size: 2.2rem; margin-bottom: 0.8rem; }
-  .region-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: white;
-    margin-bottom: 0.4rem;
-  }
-  .region-count {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    color: var(--teal-light);
-  }
-
-  /* ── JOIN ── */
-  .join {
-    padding: 9rem 4rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6rem;
-    align-items: center;
-  }
-  .join-heading {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    font-weight: 300;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-  }
-  .join-heading em { font-style: italic; color: var(--teal); }
-  .join-sub {
-    margin-top: 1.5rem;
-    font-size: 1rem;
-    line-height: 1.8;
-    color: var(--muted);
-  }
-  .join-form {
-    background: var(--cream);
-    padding: 3rem;
-  }
-  .form-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--teal);
-    margin-bottom: 0.5rem;
-    display: block;
-  }
-  .form-field {
-    width: 100%;
-    padding: 0.9rem 1.1rem;
-    background: white;
-    border: 1px solid var(--border);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
-    margin-bottom: 1.2rem;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .form-field:focus { border-color: var(--teal); }
-  .form-select {
-    width: 100%;
-    padding: 0.9rem 1.1rem;
-    background: white;
-    border: 1px solid var(--border);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
-    outline: none;
-    appearance: none;
-    cursor: pointer;
-  }
-  .btn-submit {
-    width: 100%;
-    padding: 1.1rem;
-    background: linear-gradient(135deg, var(--teal), var(--purple));
-    color: white;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    border: none;
-    cursor: pointer;
-    transition: opacity 0.2s, transform 0.15s;
-  }
-  .btn-submit:hover { opacity: 0.9; transform: translateY(-2px); }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--ink);
-    padding: 5rem 4rem 2.5rem;
-    color: rgba(255,255,255,0.45);
-  }
-  .footer-top {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 3rem;
-    margin-bottom: 4rem;
-  }
-  .footer-brand .logo-text {
-    font-family: 'Space Mono', monospace;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--teal-light);
-    margin-bottom: 1rem;
-  }
-  .footer-brand p {
-    font-size: 0.85rem;
-    line-height: 1.75;
-    max-width: 280px;
-  }
-  .footer-col h4 {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.25);
-    margin-bottom: 1.5rem;
-  }
-  .footer-col ul { list-style: none; }
-  .footer-col li { margin-bottom: 0.7rem; }
-  .footer-col a {
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.45);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .footer-col a:hover { color: var(--teal-light); }
-  .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.07);
-    padding-top: 2rem;
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.78rem;
-  }
-
-  /* Animations */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s, transform 0.7s;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
 </style>
 </head>
 <body>
@@ -679,38 +93,24 @@
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-bg"></div>
-
-  <!-- Floating scripts -->
   <div class="scripts-bg">
     <span class="script-char" style="top:12%;left:8%;animation-delay:0s">𓀀</span>
     <span class="script-char" style="top:25%;left:88%;animation-delay:3s">ꦲ</span>
     <span class="script-char" style="top:65%;left:6%;animation-delay:6s">ᚠ</span>
-    <span class="script-char" style="top:78%;left:82%;animation-delay:9s">ꀀ</span>
-    <span class="script-char" style="top:45%;left:92%;animation-delay:2s">ᜀ</span>
-    <span class="script-char" style="top:18%;left:55%;animation-delay:7s">ᓀ</span>
-    <span class="script-char" style="top:85%;left:40%;animation-delay:4s">ꓐ</span>
-    <span class="script-char" style="top:55%;left:75%;animation-delay:11s">𑀩</span>
-    <span class="script-char" style="top:30%;left:20%;animation-delay:5s">ᮃ</span>
-    <span class="script-char" style="top:72%;left:60%;animation-delay:8s">ᦀ</span>
   </div>
-
   <div class="hero-eyebrow">Global · Multilingual · Community-Driven</div>
-
   <h1 class="hero-title">
     Every voice<br>
     <em>deserves</em> to be<br>
     <span class="line2">heard.</span>
   </h1>
-
   <p class="hero-sub">
     We are a global center dedicated to documenting, preserving, and celebrating the world's low-resource languages — connecting researchers, speakers, and communities across every continent.
   </p>
-
   <div class="hero-actions">
     <button class="btn-primary">Explore Our Work</button>
     <button class="btn-outline">Join the Community</button>
   </div>
-
   <div class="hero-scroll">
     <span class="scroll-line"></span>
     Scroll to discover
@@ -719,259 +119,11 @@
 
 <!-- STATS BAND -->
 <div class="stats-band">
-  <div class="stat-item">
-    <div class="stat-num">7,000+</div>
-    <div class="stat-label">Languages Worldwide</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">40%</div>
-    <div class="stat-label">At Risk of Extinction</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">120+</div>
-    <div class="stat-label">Countries Represented</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">2,500+</div>
-    <div class="stat-label">Researchers & Members</div>
-  </div>
+  <div class="stat-item"><div class="stat-num">7,000+</div><div class="stat-label">Languages Worldwide</div></div>
+  <div class="stat-item"><div class="stat-num">40%</div><div class="stat-label">At Risk of Extinction</div></div>
+  <div class="stat-item"><div class="stat-num">120+</div><div class="stat-label">Countries Represented</div></div>
+  <div class="stat-item"><div class="stat-num">2,500+</div><div class="stat-label">Researchers & Members</div></div>
 </div>
-
-<!-- MISSION -->
-<section class="mission reveal" id="mission">
-  <div class="mission-content">
-    <div class="mission-label">Our Mission</div>
-    <h2 class="mission-heading">
-      Language is the vessel of <strong>culture, memory,</strong> and identity.
-    </h2>
-    <p class="mission-text" style="margin-top:1.5rem">
-      When a language disappears, so does an irreplaceable way of seeing the world. The Center for Low-Resource Languages and Cultures exists to reverse that tide — through rigorous research, community partnerships, and open technology.
-    </p>
-    <p class="mission-text">
-      We work hand-in-hand with indigenous communities, diaspora groups, and scholars to build tools and archives that keep endangered languages alive and thriving.
-    </p>
-    <button class="btn-primary" style="margin-top:1rem">Read Our Manifesto</button>
-  </div>
-
-  <div class="mission-visual">
-    <div class="globe-container">
-      <div class="globe-ring"></div>
-      <div class="globe-ring"></div>
-      <div class="globe-ring"></div>
-
-      <!-- Orbiting language pills -->
-      <div class="lang-orbit" style="animation-delay:0s">
-        <div class="lang-pill">Yorùbá</div>
-      </div>
-      <div class="lang-orbit" style="width:320px;height:320px;animation-duration:18s;animation-delay:-5s">
-        <div class="lang-pill">Māori</div>
-      </div>
-      <div class="lang-orbit" style="width:440px;height:440px;animation-duration:28s;animation-delay:-10s">
-        <div class="lang-pill">Quechua</div>
-      </div>
-      <div class="lang-orbit" style="width:350px;height:350px;animation-duration:12s;animation-delay:-3s">
-        <div class="lang-pill">Wolof</div>
-      </div>
-      <div class="lang-orbit" style="width:480px;height:480px;animation-duration:32s;animation-delay:-8s">
-        <div class="lang-pill">Tigrinya</div>
-      </div>
-
-      <div class="globe-core">🌐</div>
-    </div>
-  </div>
-</section>
-
-<!-- TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker-inner" id="ticker">
-    <span class="ticker-item native">Amharic</span><span class="ticker-dot">◆</span>
-    <span class="ticker-item">Ꭰ Ꮒ Ꭹ Ꮫ Ꮑ Ꮘ</span><span class="ticker-dot">◆</span>
-    <span class="ticker-item native">Igbo</span><span class="ticker-dot">◆</span>
-    <span class="ticker-item">ꦲꦤꦏ꧀ꦏꦤ꧀</span><span class="ticker-dot">◆</span>
-    <span class="ticker-item native">Navajo</span><span class="ticker-dot">◆</span>
-    <span class="ticker-item">ᒥᓄᐃᑦ</span><span class="ticker-dot">◆</span>
-    <span class="ticker-item native">Hausa</span><span class="ticker-dot">◆</span>
-    <span class="ticker-item">𑀩𑀸𑀥𑀸</span><span class="ticker-dot">◆</span>
-    <span class="ticker-item native">Tswana</span><span class="ticker-dot">◆</span>
-    <span class="ticker-item">ᜋᜄᜎᜄ᜔</span><span class="ticker-dot">◆</span>
-    <span class="ticker-item native">Somali</span><span class="ticker-dot">◆</span>
-    <span class="ticker-item">ꀀꀂꀃꀄ</span><span class="ticker-dot">◆</span>
-    <!-- duplicate for seamless -->
-    <span class="ticker-item native">Amharic</span><span class="ticker-dot">◆</span>
-    <span class="ticker-item">Ꭰ Ꮒ Ꭹ ꫃ Ꮑ Ꮘ</span><span class="ticker-dot">◆</span>
-    <span class="ticker-item native">Igbo</span><span class="ticker-dot">◆</span>
-    <span class="ticker-item">ꦲꦤꦏ꧀ꦏꦤ꧀</span><span class="ticker-dot">◆</span>
-    <span class="ticker-item native">Navajo</span><span class="ticker-dot">◆</span>
-    <span class="ticker-item">ᒥᓄᐃᑦ</span><span class="ticker-dot">◆</span>
-    <span class="ticker-item native">Hausa</span><span class="ticker-dot">◆</span>
-    <span class="ticker-item">𑀩𑀸𑀥𑀸</span><span class="ticker-dot">◆</span>
-    <span class="ticker-item native">Tswana</span><span class="ticker-dot">◆</span>
-    <span class="ticker-item">ᜋᜄᜎᜄ᜔</span><span class="ticker-dot">◆</span>
-    <span class="ticker-item native">Somali</span><span class="ticker-dot">◆</span>
-    <span class="ticker-item">ꀀꀂꀃꀄ</span><span class="ticker-dot">◆</span>
-  </div>
-</div>
-
-<!-- PILLARS -->
-<section class="pillars reveal" id="pillars">
-  <div class="section-header">
-    <div class="label">What We Do</div>
-    <h2>Three pillars of <em>lasting impact</em></h2>
-  </div>
-  <div class="pillars-grid">
-    <div class="pillar-card">
-      <div class="pillar-num">01 —</div>
-      <div class="pillar-icon">📖</div>
-      <h3 class="pillar-title">Documentation</h3>
-      <p class="pillar-desc">Systematic field recording of oral traditions, grammars, lexicons, and endangered dialects — creating permanent digital archives accessible to future generations.</p>
-    </div>
-    <div class="pillar-card">
-      <div class="pillar-num">02 —</div>
-      <div class="pillar-icon">⚙️</div>
-      <h3 class="pillar-title">Technology</h3>
-      <p class="pillar-desc">Building open-source NLP tools, speech recognition datasets, and AI models for languages that big tech has left behind. Making language tech equitable and inclusive.</p>
-    </div>
-    <div class="pillar-card">
-      <div class="pillar-num">03 —</div>
-      <div class="pillar-icon">🤝</div>
-      <h3 class="pillar-title">Community</h3>
-      <p class="pillar-desc">Empowering native speaker communities as the true owners of their linguistic heritage — funding grassroots revival programs, schools, and cultural events worldwide.</p>
-    </div>
-  </div>
-</section>
-
-<!-- COMMUNITY -->
-<section class="community reveal" id="community">
-  <div class="community-bg"></div>
-  <div class="section-header">
-    <div class="label">Global Reach</div>
-    <h2>Active in every <em>corner of the world</em></h2>
-  </div>
-  <div class="regions-grid">
-    <div class="region-card">
-      <div class="region-flag">🌍</div>
-      <div class="region-name">Africa</div>
-      <div class="region-count">600+ Languages</div>
-    </div>
-    <div class="region-card">
-      <div class="region-flag">🌏</div>
-      <div class="region-name">Asia-Pacific</div>
-      <div class="region-count">2,300+ Languages</div>
-    </div>
-    <div class="region-card">
-      <div class="region-flag">🌎</div>
-      <div class="region-name">Americas</div>
-      <div class="region-count">1,000+ Languages</div>
-    </div>
-    <div class="region-card">
-      <div class="region-flag">🌐</div>
-      <div class="region-name">Europe</div>
-      <div class="region-count">300+ Languages</div>
-    </div>
-    <div class="region-card">
-      <div class="region-flag">🏔️</div>
-      <div class="region-name">Middle East</div>
-      <div class="region-count">60+ Languages</div>
-    </div>
-  </div>
-</section>
-
-<!-- PROGRAMS -->
-<section class="programs reveal" id="programs">
-  <div class="programs-sticky">
-    <div class="mission-label">Our Programs</div>
-    <h2 class="mission-heading" style="font-size:2.5rem">
-      Initiatives built <strong>for lasting change</strong>
-    </h2>
-    <p class="mission-text" style="margin-top:1.2rem">
-      From fieldwork fellowships to AI research grants, our programs support the full lifecycle of language preservation — from first contact to digital immortality.
-    </p>
-    <button class="btn-outline" style="margin-top:1.5rem;color:var(--teal);border-color:var(--teal)">View All Programs →</button>
-  </div>
-
-  <div class="programs-list">
-    <div class="program-item active">
-      <h3>Fieldwork Fellowships</h3>
-      <p>Fund 6–18 month immersive documentation projects with endangered-language communities around the world.</p>
-    </div>
-    <div class="program-item">
-      <h3>Open Language Dataset Initiative</h3>
-      <p>Collaboratively building the world's largest open corpus of low-resource language data for AI training.</p>
-    </div>
-    <div class="program-item">
-      <h3>Community Revival Grants</h3>
-      <p>Direct funding to indigenous-led programs developing teaching materials, apps, and cultural media.</p>
-    </div>
-    <div class="program-item">
-      <h3>Language Tech Residency</h3>
-      <p>A 3-month residency pairing engineers with linguists to build practical NLP tools for underserved communities.</p>
-    </div>
-    <div class="program-item">
-      <h3>Global Speaker Network</h3>
-      <p>Connecting diaspora speakers worldwide to practice, document, and teach their heritage languages.</p>
-    </div>
-    <div class="program-item">
-      <h3>Youth Language Ambassadors</h3>
-      <p>Training young people from language communities as ambassadors, educators, and digital content creators.</p>
-    </div>
-  </div>
-</section>
-
-<!-- JOIN -->
-<section class="join reveal" id="join">
-  <div>
-    <div class="mission-label">Join CLRLC</div>
-    <h2 class="join-heading">
-      Be part of something<br><em>larger than yourself.</em>
-    </h2>
-    <p class="join-sub">
-      Whether you're a linguist, a developer, a community organizer, or simply someone who believes every language matters — there's a place for you here.
-    </p>
-    <div style="margin-top:2.5rem;display:flex;flex-direction:column;gap:1rem">
-      <div style="display:flex;align-items:center;gap:1rem;font-size:0.9rem;color:var(--muted)">
-        <span style="color:var(--teal);font-size:1.2rem">✓</span> Access to our full language archive
-      </div>
-      <div style="display:flex;align-items:center;gap:1rem;font-size:0.9rem;color:var(--muted)">
-        <span style="color:var(--teal);font-size:1.2rem">✓</span> Connect with 2,500+ global researchers
-      </div>
-      <div style="display:flex;align-items:center;gap:1rem;font-size:0.9rem;color:var(--muted)">
-        <span style="color:var(--teal);font-size:1.2rem">✓</span> Apply for grants and fellowships
-      </div>
-      <div style="display:flex;align-items:center;gap:1rem;font-size:0.9rem;color:var(--muted)">
-        <span style="color:var(--teal);font-size:1.2rem">✓</span> Attend global symposia and workshops
-      </div>
-    </div>
-  </div>
-
-  <div class="join-form">
-    <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;margin-bottom:2rem;letter-spacing:-0.01em">
-      Start your membership
-    </div>
-    <label class="form-label">Full Name</label>
-    <input class="form-field" type="text" placeholder="Your name">
-    <label class="form-label">Email Address</label>
-    <input class="form-field" type="email" placeholder="your@email.com">
-    <label class="form-label">Your Focus Area</label>
-    <select class="form-select">
-      <option>Linguistics & Documentation</option>
-      <option>NLP / Language Technology</option>
-      <option>Community Organizing</option>
-      <option>Cultural Preservation</option>
-      <option>Education</option>
-      <option>General Interest</option>
-    </select>
-    <label class="form-label">Region</label>
-    <select class="form-select">
-      <option>Africa</option>
-      <option>Asia-Pacific</option>
-      <option>Americas</option>
-      <option>Europe</option>
-      <option>Middle East</option>
-    </select>
-    <button class="btn-submit">Join the Community →</button>
-    <p style="font-size:0.75rem;color:var(--muted);text-align:center;margin-top:1rem">Free to join. No spam, ever.</p>
-  </div>
-</section>
 
 <!-- FOOTER -->
 <footer>
@@ -985,59 +137,33 @@
       <ul>
         <li><a href="#">Language Archive</a></li>
         <li><a href="#">Publications</a></li>
-        <li><a href="#">Open Datasets</a></li>
-        <li><a href="#">Field Reports</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Data Tools</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Community</h4>
       <ul>
-        <li><a href="#">Member Directory</a></li>
+        <li><a href="#">Membership</a></li>
         <li><a href="#">Events</a></li>
-        <li><a href="#">Forums</a></li>
-        <li><a href="#">Newsletter</a></li>
+        <li><a href="#">Ambassadors</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>About</h4>
       <ul>
-        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Our Mission</a></li>
         <li><a href="#">Team</a></li>
-        <li><a href="#">Partners</a></li>
         <li><a href="#">Contact</a></li>
+        <li><a href="#">FAQs</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 CLRLC — Center for Low-Resource Languages and Cultures</span>
-    <span>Every language matters.</span>
+    <span>© 2026 CLRLC. All rights reserved.</span>
+    <span>Follow us on <a href="#">Twitter</a> · <a href="#">LinkedIn</a> · <a href="#">Facebook</a></span>
   </div>
 </footer>
 
-<script>
-  // Reveal on scroll
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(r => observer.observe(r));
-
-  // Program item hover
-  document.querySelectorAll('.program-item').forEach(item => {
-    item.addEventListener('mouseenter', () => {
-      document.querySelectorAll('.program-item').forEach(i => i.classList.remove('active'));
-      item.classList.add('active');
-    });
-  });
-
-  // Nav CTA + buttons
-  document.querySelectorAll('.btn-primary, .nav-cta, .btn-submit').forEach(btn => {
-    btn.addEventListener('click', function() {
-      document.querySelector('#join').scrollIntoView({ behavior: 'smooth' });
-    });
-  });
-</script>
 </body>
 </html>
